@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+
+  <button mat-mini-fab
+          [routerLink]="'home'"
+          [routerLinkActive]="'active-link'"
+          color="primary"
+          class="espacarDireita">
+    <mat-icon>home</mat-icon>
+  </button>
+
+  <button *ngFor="let item of itens"
+          mat-raised-button
+          [routerLink]="item.routerLink"
+          [routerLinkActive]="'active-link'"
+          color="primary"
+          class="espacarDireita">
+    {{ item.label }}
+  </button>
+
+  <span class="espacadorGeral"></span>
+
+  <span>SBVTDSW - BCC - IFSP</span>
+
+</mat-toolbar>

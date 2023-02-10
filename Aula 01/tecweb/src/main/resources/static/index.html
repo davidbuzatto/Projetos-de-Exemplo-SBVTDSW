@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DrawChat</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/estilos.css" rel="stylesheet"/>
+    <script src="js/app.js" type="module"></script>
+  </head>
+  <body>
+    <div id="divContainer">
+      <div id="divView">
+        <div id="divEntrar">
+          <label for="txtNome">Nome: </label>
+          <input type="text" id="txtNome"/>
+        </div>
+        <div id="divControles">
+          <div id="divFormas">
+            <label>Forma: </label>
+            <input type="radio" name="tipoForma" value="linha" id="radioLinha" checked/> Linha
+            <input type="radio" name="tipoForma" value="retangulo" id="radioRetangulo"/> Retângulo
+            <input type="radio" name="tipoForma" value="elipse" id="radioElipse"/> Elipse
+          </div>
+          <div id="divCores">
+            <label for="colCorContorno">Cor de Contorno: </label><input type="color" id="colCorContorno" value="#000000"/>
+            <label for="colCorPreenchimento">Cor de Preenchimento: </label><input type="color" id="colCorPreenchimento" value="#ffffff"/>
+          </div>
+        </div>
+        <div id="divCanvas">
+          <canvas id="canvasDesenho"></canvas> 
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

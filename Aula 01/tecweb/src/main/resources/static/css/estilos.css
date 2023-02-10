@@ -1,0 +1,52 @@
+body {
+    margin: 0px;
+    padding: 10px;
+    font-family: sans-serif;
+}
+
+#divContainer {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+#divView {
+    width: 800px;
+    height: 710px;
+    background-color: #dedede;
+    border: solid thin #aaaaaa;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#divEntrar {
+    background-color: #eeeeee;
+    border: solid thin #aaaaaa;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#divControles {
+    background-color: #eeeeee;
+    border: solid thin #aaaaaa;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: grid;
+    grid-template-columns: 350px 450px;
+    align-items: center;
+}
+
+#divCanvas {
+    background-color: #ffffff;
+    border: solid thin #aaaaaa;
+    border-radius: 10px;
+    width: 800px;
+    height: 600px;
+}
+
+#canvasDesenho {
+    background-color: #ffffff;
+    border-radius: 10px;
+}

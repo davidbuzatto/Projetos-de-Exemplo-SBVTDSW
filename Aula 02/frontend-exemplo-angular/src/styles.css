@@ -1,0 +1,60 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.espacarDireita {
+  margin-right: 5px;
+}
+
+.espacarAbaixo {
+  margin-bottom: 10px;
+}
+
+.espacadorGeral {
+  flex: 1 1 auto;
+}
+
+.secaoConteudo {
+  padding: 20px;
+}
+
+.botaoBusca {
+  height: 58px !important;
+}
+
+.inputsCadastros {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.spanErroInputs {
+  font-size: 12px;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  background: #37474f;
+  color: white;
+}
+
+.preencherContainer {
+  width: 100%;
+  height: 100%;
+}

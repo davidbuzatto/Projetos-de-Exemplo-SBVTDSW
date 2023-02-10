@@ -1,0 +1,152 @@
+<mat-card>
+
+  <mat-card-header>
+    <h1>Cadastro de Cidades</h1>
+  </mat-card-header>
+
+  <mat-card-content>
+
+    <mat-card class="espacarAbaixo">
+
+      <mat-card-header>
+        <h2>Cidades Cadastrados</h2>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <form [formGroup]="buscaCidadeFormGroup"
+              (ngSubmit)="onSubmitBusca(formDirectiveBusca)"
+              #formDirectiveBusca="ngForm">
+
+          <div formGroupName="dados">
+
+            <mat-form-field appearance="outline" class="espacarDireita">
+              <mat-label>Buscar por</mat-label>
+              <mat-select formControlName="tipoBusca">
+                <mat-option value="todos">Todos</mat-option>
+                <mat-option value="id">Id</mat-option>
+                <mat-option value="nome">Nome</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="espacarDireita" style="width: 300px;">
+              <mat-label>Buscar</mat-label>
+              <input formControlName="valorBusca" matInput type="text">
+            </mat-form-field>
+
+            <button mat-flat-button
+                    color="primary"
+                    class="espacarDireita botaoBusca"
+                    type="submit">
+              Buscar
+            </button>
+          </div>
+
+        </form>
+
+        <table *ngIf="cidades.length > 0" mat-table [dataSource]="cidades" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>Id</th>
+            <td mat-cell *matCellDef="let element">{{element.id}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef>Nome</th>
+            <td mat-cell *matCellDef="let element">{{element.nome}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef>Estado</th>
+            <td mat-cell *matCellDef="let element">{{element.estado.sigla}}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="colunasTabela"></tr>
+          <tr
+            mat-row
+            (click)="cliqueLinhaTabela(row)"
+            *matRowDef="let row; columns: colunasTabela;"></tr>
+
+        </table>
+
+        <div *ngIf="cidades.length === 0" class="alert alert-danger">
+          Não há cidades cadastradas de acordo com seus critérios de busca.
+        </div>
+
+      </mat-card-content>
+
+      <mat-card-actions style="margin-top: 10px; text-align: right;">
+        <mat-paginator
+          [length]="quantidadeElementos"
+          [pageIndex]="paginaAtual"
+          [pageSize]="tamanhoPagina"
+          [pageSizeOptions]="opcoesTamanhoPaginas"
+          (page)="mudarPagina($event)"
+          showFirstLastButtons></mat-paginator>
+      </mat-card-actions>
+
+    </mat-card>
+
+    <mat-card>
+
+      <form [formGroup]="cidadeFormGroup"
+            (ngSubmit)="onSubmitCadastro(formDirectiveCadastro)"
+            #formDirectiveCadastro="ngForm">
+
+        <mat-card-content>
+
+          <div formGroupName="cidade" class="inputsCadastros">
+
+            <mat-form-field appearance="outline">
+              <mat-label>Id</mat-label>
+              <input matInput formControlName="id" type="text">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Nome</mat-label>
+              <input matInput formControlName="nome" type="text">
+
+              <mat-error *ngIf="nome?.invalid && (nome?.dirty || nome?.touched)">
+                <span *ngIf="nome?.errors?.['required'] || nome?.errors?.['notOnlyWhitespace']" class="spanErroInputs">
+                  Obrigatório
+                </span>
+                <span *ngIf="nome?.errors?.['minlength'] || nome?.errors?.['maxlength']" class="spanErroInputs">
+                  2 a 50 caracteres
+                </span>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Estado</mat-label>
+              <mat-select formControlName="estado" [compareWith]="compararPorId">
+                <mat-option *ngFor="let estado of estados" [value]="estado">
+                  {{ estado.nome }}
+                </mat-option>
+              </mat-select>
+
+              <mat-error *ngIf="estado?.invalid && (estado?.dirty || estado?.touched)">
+                <span *ngIf="estado?.errors?.['required']" class="spanErroInputs">
+                  Obrigatório
+                </span>
+              </mat-error>
+            </mat-form-field>
+
+          </div>
+
+        </mat-card-content>
+
+        <mat-divider></mat-divider>
+
+        <mat-card-actions>
+          <button mat-raised-button class="espacarDireita" type="reset">Novo</button>
+          <button mat-raised-button class="espacarDireita" color="primary" type="submit">Salvar</button>
+          <button mat-raised-button color="warn" (click)="cliqueBotaoExcluir(formDirectiveCadastro)" type="button">Excluir</button>
+        </mat-card-actions>
+
+      </form>
+
+    </mat-card>
+
+  </mat-card-content>
+
+</mat-card>

@@ -1,0 +1,18 @@
+Acessar https://start.spring.io/ e preparar o projeto;
+Baixar pacote (Generate);
+Descompactar;
+Abrir no NetBeans;
+Botão direito no projeto, "Resolve Project Problems";
+Clicar em "Resolve" no diálogo aberto e aguardar o Maven terminar;
+Clicar em "Close" após as dependências tiverem sido baixadas;
+Todo pacote deve ser dentro do pacote raiz do projeto;
+Configurar o arquivo application.properties;
+Configurar a aplicação;
+Criar o index.html;
+Criar as entidades;
+Configurar arquivo de importação SQL;
+Testar implantação;
+Criar os repositórios;
+Testar o mapeamento usando o Spring Actuator e Hal Explorer;
+Criar JavaScript para testar;
+Criar formulários.

@@ -1,0 +1,443 @@
+<mat-card>
+  <mat-card-header>
+    <h1>Cadastro de Vendas</h1>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="containerVenda">
+      <div class="containerTabelaVenda">
+        <mat-card class="preencherContainer espacarAbaixo">
+          <mat-card-header>
+            <h2>Vendas Cadastradas</h2>
+          </mat-card-header>
+          <mat-card-content>
+            <form
+              [formGroup]="buscaVendaFormGroup"
+              (ngSubmit)="onSubmitBuscaVenda(formDirectiveBuscaVenda)"
+              #formDirectiveBuscaVenda="ngForm"
+            >
+              <div formGroupName="dados">
+                <mat-form-field appearance="outline" class="espacarDireita">
+                  <mat-label>Buscar por</mat-label>
+                  <mat-select
+                    formControlName="tipoBuscaVenda"
+                    (selectionChange)="configurarCampoDeBusca()"
+                  >
+                    <mat-option value="todos">Todos</mat-option>
+                    <mat-option value="id">Id</mat-option>
+                    <mat-option value="data">Data</mat-option>
+                    <mat-option value="cancelada">Cancelada</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field *ngIf="tipoBuscaComponente === 'todos' || tipoBuscaComponente === 'id'" appearance="outline" class="espacarDireita">
+                  <mat-label>Buscar</mat-label>
+                  <input
+                    formControlName="valorBuscaVendaTodosId"
+                    matInput
+                    type="text"
+                  />
+                </mat-form-field>
+                <mat-form-field
+                  *ngIf="tipoBuscaComponente === 'data'"
+                  appearance="outline"
+                  class="espacarDireita"
+                  style="width: 200px"
+                >
+                  <mat-label>Data</mat-label>
+                  <input
+                    formControlName="valorBuscaVendaData"
+                    matInput
+                    [matDatepicker]="picker"
+                    placeholder="dd/mm/aaaa"
+                  />
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-radio-group
+                  *ngIf="tipoBuscaComponente === 'cancelada'"
+                  formControlName="valorBuscaVendaCancelada"
+                >
+                  <mat-radio-button value="true">Sim</mat-radio-button>
+                  <mat-radio-button value="false" style="margin-right: 20px;">Não</mat-radio-button>
+                </mat-radio-group>
+                <button
+                  mat-flat-button
+                  color="primary"
+                  class="espacarDireita botaoBusca"
+                  type="submit"
+                >
+                  Buscar
+                </button>
+              </div>
+            </form>
+            <table
+              *ngIf="vendas.length > 0"
+              mat-table
+              [dataSource]="vendas"
+              class="mat-elevation-z8"
+            >
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>Id</th>
+                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+              </ng-container>
+              <ng-container matColumnDef="cliente">
+                <th mat-header-cell *matHeaderCellDef>Cliente</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.cliente.nome }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="data">
+                <th mat-header-cell *matHeaderCellDef>Data</th>
+                <td mat-cell *matCellDef="let element">
+                  {{ element.data | date : "dd/MM/yyyy" }}
+                </td>
+              </ng-container>
+              <ng-container matColumnDef="cancelar">
+                <th mat-header-cell *matHeaderCellDef>Cancelar</th>
+                <td mat-cell *matCellDef="let element">
+                  <button
+                    *ngIf="!element.cancelada"
+                    mat-raised-button
+                    color="accent"
+                    type="button"
+                    (click)="abrirDialogoConfirmacaoCancelamento(element)"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    *ngIf="element.cancelada"
+                    mat-raised-button
+                    color="accent"
+                    type="button"
+                    disabled
+                  >
+                    Cancelada
+                  </button>
+                </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="colunasTabelaVenda"></tr>
+              <tr
+                mat-row
+                *matRowDef="let row; columns: colunasTabelaVenda"
+              ></tr>
+            </table>
+            <div *ngIf="vendas.length === 0" class="alert alert-danger">
+              Não há vendas cadastradas de acordo com seus critérios de busca.
+            </div>
+          </mat-card-content>
+          <mat-card-actions style="margin-top: 10px; text-align: right">
+            <mat-paginator
+              [length]="quantidadeElementosVenda"
+              [pageIndex]="paginaAtualVenda"
+              [pageSize]="tamanhoPaginaVenda"
+              [pageSizeOptions]="opcoesTamanhoPaginasVenda"
+              (page)="mudarPaginaVenda($event)"
+              showFirstLastButtons
+            ></mat-paginator>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div class="containerDadosVenda">
+        <mat-card class="preencherContainer espacarAbaixo">
+          <mat-card-header>
+            <h2>Dados da Venda</h2>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="containerDadosVendaC">
+              <div class="containerClienteProduto">
+                <mat-card class="preencherContainer espacarAbaixo">
+                  <mat-card-content>
+                    <mat-card class="espacarAbaixo">
+                      <mat-card-header>
+                        <h3>Cliente</h3>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <form
+                          [formGroup]="buscaClienteFormGroup"
+                          (ngSubmit)="
+                            onSubmitBuscaCliente(formDirectiveBuscaCliente)
+                          "
+                          #formDirectiveBuscaCliente="ngForm"
+                        >
+                          <div formGroupName="dados">
+                            <mat-form-field
+                              appearance="outline"
+                              class="espacarDireita"
+                            >
+                              <mat-label>Buscar por</mat-label>
+                              <mat-select formControlName="tipoBuscaCliente">
+                                <mat-option value="todos">Todos</mat-option>
+                                <mat-option value="id">Id</mat-option>
+                                <mat-option value="nome">Nome</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <mat-form-field
+                              appearance="outline"
+                              class="espacarDireita"
+                            >
+                              <mat-label>Buscar</mat-label>
+                              <input
+                                formControlName="valorBuscaCliente"
+                                matInput
+                                type="text"
+                              />
+                            </mat-form-field>
+                            <button
+                              mat-flat-button
+                              color="primary"
+                              class="espacarDireita botaoBusca"
+                              type="submit"
+                            >
+                              Buscar
+                            </button>
+                          </div>
+                        </form>
+                        <table
+                          *ngIf="clientes.length > 0"
+                          mat-table
+                          [dataSource]="clientes"
+                          class="mat-elevation-z8"
+                        >
+                          <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef>Id</th>
+                            <td mat-cell *matCellDef="let element">
+                              {{ element.id }}
+                            </td>
+                          </ng-container>
+                          <ng-container matColumnDef="nome">
+                            <th mat-header-cell *matHeaderCellDef>Nome</th>
+                            <td mat-cell *matCellDef="let element">
+                              {{ element.nome }}
+                            </td>
+                          </ng-container>
+                          <tr
+                            mat-header-row
+                            *matHeaderRowDef="colunasTabelaCliente"
+                          ></tr>
+                          <tr
+                            mat-row
+                            (click)="cliqueLinhaTabelaCliente(row)"
+                            *matRowDef="let row; columns: colunasTabelaCliente"
+                          ></tr>
+                        </table>
+                        <div
+                          *ngIf="clientes.length === 0"
+                          class="alert alert-danger"
+                        >
+                          Não há clientes cadastrados de acordo com seus
+                          critérios de busca.
+                        </div>
+                      </mat-card-content>
+                      <mat-card-actions
+                        style="margin-top: 10px; text-align: right"
+                      >
+                        <mat-paginator
+                          [length]="quantidadeElementosCliente"
+                          [pageIndex]="paginaAtualCliente"
+                          [pageSize]="tamanhoPaginaCliente"
+                          [pageSizeOptions]="opcoesTamanhoPaginasCliente"
+                          (page)="mudarPaginaCliente($event)"
+                          showFirstLastButtons
+                        ></mat-paginator>
+                      </mat-card-actions>
+                    </mat-card>
+                    <mat-card>
+                      <mat-card-header>
+                        <h3>Produto</h3>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <form
+                          [formGroup]="buscaProdutoFormGroup"
+                          (ngSubmit)="
+                            onSubmitBuscaProduto(formDirectiveBuscaProduto)
+                          "
+                          #formDirectiveBuscaProduto="ngForm"
+                        >
+                          <div formGroupName="dados">
+                            <mat-form-field
+                              appearance="outline"
+                              class="espacarDireita"
+                            >
+                              <mat-label>Buscar por</mat-label>
+                              <mat-select formControlName="tipoBuscaProduto">
+                                <mat-option value="todos">Todos</mat-option>
+                                <mat-option value="id">Id</mat-option>
+                                <mat-option value="nome">Nome</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <mat-form-field
+                              appearance="outline"
+                              class="espacarDireita"
+                            >
+                              <mat-label>Buscar</mat-label>
+                              <input
+                                formControlName="valorBuscaProduto"
+                                matInput
+                                type="text"
+                              />
+                            </mat-form-field>
+                            <button
+                              mat-flat-button
+                              color="primary"
+                              class="espacarDireita botaoBusca"
+                              type="submit"
+                            >
+                              Buscar
+                            </button>
+                          </div>
+                        </form>
+                        <table
+                          *ngIf="produtos.length > 0"
+                          mat-table
+                          [dataSource]="produtos"
+                          class="mat-elevation-z8"
+                        >
+                          <ng-container matColumnDef="id">
+                            <th mat-header-cell *matHeaderCellDef>Id</th>
+                            <td mat-cell *matCellDef="let element">
+                              {{ element.id }}
+                            </td>
+                          </ng-container>
+                          <ng-container matColumnDef="nome">
+                            <th mat-header-cell *matHeaderCellDef>Nome</th>
+                            <td mat-cell *matCellDef="let element">
+                              {{ element.nome }}
+                            </td>
+                          </ng-container>
+                          <tr
+                            mat-header-row
+                            *matHeaderRowDef="colunasTabelaProduto"
+                          ></tr>
+                          <tr
+                            mat-row
+                            (click)="cliqueLinhaTabelaProduto(row)"
+                            *matRowDef="let row; columns: colunasTabelaProduto"
+                          ></tr>
+                        </table>
+                        <div
+                          *ngIf="produtos.length === 0"
+                          class="alert alert-danger"
+                        >
+                          Não há produtos cadastrados de acordo com seus
+                          critérios de busca.
+                        </div>
+                      </mat-card-content>
+                      <mat-card-actions
+                        style="margin-top: 10px; text-align: right"
+                      >
+                        <mat-paginator
+                          [length]="quantidadeElementosProduto"
+                          [pageIndex]="paginaAtualProduto"
+                          [pageSize]="tamanhoPaginaProduto"
+                          [pageSizeOptions]="opcoesTamanhoPaginasProduto"
+                          (page)="mudarPaginaProduto($event)"
+                          showFirstLastButtons
+                        ></mat-paginator>
+                      </mat-card-actions>
+                    </mat-card>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div class="containerItensVenda">
+                <mat-card class="preencherContainer espacarAbaixo">
+                  <mat-card-content>
+                    <mat-card class="espacarAbaixo">
+                      <mat-card-header>
+                        <h3>Itens da Venda</h3>
+                      </mat-card-header>
+                      <mat-card-content>
+                        <mat-card>
+                          <mat-card-header>
+                            <h4>Items</h4>
+                          </mat-card-header>
+                          <mat-card-content>
+                            <div class="bordaItensVenda">
+                              <div class="itensVenda">
+                                <div
+                                  *ngFor="let item of itensVenda; let i = index"
+                                  [attr.data-index]="i"
+                                  class="itemVenda"
+                                >
+                                  <span class="spanItemVenda">
+                                    {{ item.produto.nome }} -
+                                    {{ item.produto.preco | currency : "BRL" }}
+                                    x {{ item.quantidade }} =
+                                    {{
+                                      item.produto.preco * item.quantidade
+                                        | currency : "BRL"
+                                    }}
+                                  </span>
+                                  <button
+                                    mat-icon-button
+                                    color="primary"
+                                    (click)="cliqueRemoverItemVenda(i)"
+                                  >
+                                    <mat-icon>backspace</mat-icon>
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </mat-card-content>
+                        </mat-card>
+                      </mat-card-content>
+                    </mat-card>
+                    <mat-card class="espacarAbaixo">
+                      <mat-card-header>
+                        <h3>Nova Venda</h3>
+                      </mat-card-header>
+                      <mat-card-content class="espacarAbaixo">
+                        <div
+                          class="alert"
+                          [ngClass]="gerarClasseClienteSelecionado()"
+                          style="font-size: larger"
+                        >
+                          <strong>Cliente: </strong>
+                          <span *ngIf="clienteSelecionado">{{
+                            clienteSelecionado.nome
+                          }}</span>
+                          <span *ngIf="!clienteSelecionado"
+                            >Selecione um cliente!</span
+                          >
+                        </div>
+                        <div
+                          class="alert alert-primary"
+                          style="font-size: larger"
+                        >
+                          <strong>Total: </strong
+                          >{{ totalVenda | currency : "BRL" }}
+                        </div>
+                      </mat-card-content>
+                      <mat-divider></mat-divider>
+                      <mat-card-actions>
+                        <button
+                          mat-raised-button
+                          class="espacarDireita"
+                          color="primary"
+                          type="button"
+                          (click)="vender()"
+                        >
+                          Salvar
+                        </button>
+                        <button
+                          mat-raised-button
+                          class="espacarDireita"
+                          color="accent"
+                          type="button"
+                          (click)="limparVenda()"
+                        >
+                          Cancelar Venda Atual
+                        </button>
+                      </mat-card-actions>
+                    </mat-card>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

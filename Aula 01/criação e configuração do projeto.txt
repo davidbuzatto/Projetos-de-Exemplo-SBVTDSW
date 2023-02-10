@@ -1,0 +1,27 @@
+001) Acesse https://start.spring.io/
+
+002) Project: Maven
+     Language: Java
+     Spring Boot: 3.0.2 ou 3.0.x
+     Project Metadata: 
+        group: br.com.seunome
+        artifact: tecweb
+        name: Exemplo de Tecnologias Web
+        description: Projeto de Exemplo de Tecnologias Web
+        package name: br.com.seunome.tecweb
+        packaging: jar
+        java: 17
+     Dependencies:
+        Spring Boot DevTools
+        Lombok
+        Spring Web
+        WebSocket
+        Spring Boot Actuator
+        
+     Cliar no botão "generate", baixar o arquivo .zip, descompactar e abrir o projeto no NetBeans ou no VSCode (abrir diretório/folder).
+     A configuração acima pode ser baixada pelo link https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.0.2&packaging=jar&jvmVersion=17&groupId=br.com.davidbuzatto&artifactId=tecweb&name=Exemplo%20de%20Tecnologias%20Web&description=Projeto%20de%20Exemplo%20de%20Tecnologias%20Web&packageName=br.com.davidbuzatto.tecweb&dependencies=devtools,lombok,webflux,websocket,actuator
+     
+     
+003) Normalmente projetos Maven precisam passar por mais um processo de carga quando abertos no NetBeans, pois a instalação local do Maven precisa enxergar tudo o que foi configurado no projeto. Você perceberá que o projeto, no NetBeans, apresentará um sinal de exclamação. Clique com o botão direito e escolha "Resolve Project Problems" e no diálogo que se abrirá, clique em Resolve... O Maven entrará em ação e deixará tudo pronto para podermos começar a trabalhar. No VSCode esse passo não é necessário. Na primeira execução o Maven preparará o ambiente para nós.
+
+004) Agora temos nosso projeto pronto para trabalhar.

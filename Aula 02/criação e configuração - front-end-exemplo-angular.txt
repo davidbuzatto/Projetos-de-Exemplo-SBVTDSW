@@ -1,0 +1,208 @@
+001) Abrir o VS Code;
+
+002) Abrir um terminal (Terminal -> New Terminal) e acessar o diretório onde se quer criar o projeto;
+
+003) Entrar com o comando: ng new frontend-exemplo-angular <ENTER>
+
+004) Deseja adicionar Angular Routing? (Would you like to add Angular routing?)
+        Sim. Entrar com o comando: y <ENTER>
+         
+005) Qual tipo de folha de estilos deseja usar? (Which stylesheet format would you like to use?)
+         CSS (é a opção padrão). Entrar com o comando: <ENTER>
+         
+006) Aguarde a criação do projeto e o download das dependências.
+
+007) Acesse o diretório do projeto. Entrar com o comando: cd frontend-exemplo-angular <ENTER>
+
+008) Abra o diretório do projeto no VS Code.
+
+009) Sugestão: caso não queira controle de versões, acesse a pasta do projeto via Windows Explorer e:
+        Exclua o diretório escondido (hidden) "./.git"
+        Exclua o arquivo "./.gitignore"
+        Exclua o arquivo "./src/assets/.gitkeep"
+         
+010) Sugestão: no VS Code, abra o arquivo "./.editorconfig" e edite-o:
+        Altere
+            indent_size = 2    para    indent_size = 4
+            
+        Altere
+            [*.ts]                 para    [*.ts]
+            quote_type = single            quote_type = double
+            
+        Adicione no final do arquivo:
+            [*.{html,css}]
+            indent_size = 2
+            
+011) Sugestão: caso não queira a criação de arquivos de teste pelo Angular-CLI, abra o arquivo "./angular.json" e edite-o:
+        Altere
+            "projectType": "application",    para    "projectType": "application",
+            "schematics": {},                        "schematics": {
+            "root": "",                                "@schematics/angular:component": {
+                                                         "style": "css",
+                                                         "skipTests": true
+                                                       },
+                                                       "@schematics/angular:class": {
+                                                         "skipTests": true
+                                                       },
+                                                       "@schematics/angular:directive": {
+                                                         "skipTests": true
+                                                       },
+                                                        "@schematics/angular:pipe": {
+                                                         "skipTests": true
+                                                       },
+                                                       "@schematics/angular:service": {
+                                                         "skipTests": true
+                                                       }
+                                                     },
+                                                     "root": "",
+
+012) No terminal, dentro do diretório do projeto, instale:
+        Angular Material UI (componentes de interface gráfica) - https://material.angular.io/:
+            Entrar com o comando: ng add @angular/material <ENTER>
+            Deseja continuar? (Would you like to proceed?)
+                Sim. Entrar com o comando: Y <ENTER>
+            Escolha um tema: (Choose a prebuilt theme name, or "custom" for a custom theme):
+                Escolha "Custom" e tecle <ENTER>
+            Configurar estilos tipográficos globais? (Set up global Angular Material typography styles?):
+                Sim. Entrar com o comando: Y <ENTER>
+            Incluir módulo de animações: (Include the Angular animations module?):
+                Escolha "Include and enable animations" e tecle <ENTER>
+            
+        Bootstrap (Layout) - https://getbootstrap.com/:
+            Entrar com o comando: npm install bootstrap <ENTER>
+
+014) Abra o arquivo "./angular.json" e edite-o:
+        Altere
+            "styles": [                   para    "styles": [
+              "src/custom-theme.scss",              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"                      "src/custom-theme.scss",
+            ],                                      "src/styles.css"
+                                                  ],
+
+015) Agora vamos configurar o tema do Angular Material UI:
+        Acesse https://m2.material.io/resources/color/
+        Escolha uma cor primária e uma cor secundária para o seu tema no seletor de cores.
+        Verifique como o a paleta ficará nos widgets apresentados no centro.
+            Exemplo:
+                  primária: "Blue Grey" (linha), "800" (coluna)
+                secundária: "Orange"    (linha), "600" (coluna)
+        No VS Code, abra o arquivo "./src/custom-theme.scss" e edite-o:
+            Altere: 
+                $frontend-exemplo-angular-primary: mat.define-palette(mat.$indigo-palette);                   para    $frontend-exemplo-angular-primary: mat.define-palette(mat.$blue-grey-palette, 800);
+                $frontend-exemplo-angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);            $frontend-exemplo-angular-accent: mat.define-palette(mat.$orange-palette, 600);
+        A paleta de aviso (warn) eu vou deixar como vermelho, mas você pode alterar também caso deseje.
+
+016) Salve todos os arquivos (Ctrl+Shift+S)
+
+017) No terminal, dentro do diretório do projeto:
+        Entrar com o comando: ng serve --open
+        Caso você tenha feito tudo corretamente, o build do projeto será executado e uma nova instância do seu navegador padrão abrirá, mostrando sua aplicação.
+        Note que será apresentado um esqueleto pronto do Angular, com "frontend-exemplo-angular app is running!" em cima.
+        
+018) Vamos agora testar o Angular Material UI e o Bootstrap. Abra o arquivo "./src/app/app.component.html".
+        É nesse arquivo que está a "página" principal da aplicação, ou seja, o código apresentado por padrão no navegador.
+        Apague TODO o conteúdo do arquivo e substitua por:
+        
+        <section>
+          <div class="example-label">Basic</div>
+          <div class="example-button-row">
+            <button mat-button>Basic</button>
+            <button mat-button color="primary">Primary</button>
+            <button mat-button color="accent">Accent</button>
+            <button mat-button color="warn">Warn</button>
+            <button mat-button disabled>Disabled</button>
+            <a mat-button href="https://www.google.com/" target="_blank">Link</a>
+          </div>
+        </section>
+        <mat-divider></mat-divider>
+        <section>
+          <div class="example-label">Raised</div>
+          <div class="example-button-row">
+            <button mat-raised-button>Basic</button>
+            <button mat-raised-button color="primary">Primary</button>
+            <button mat-raised-button color="accent">Accent</button>
+            <button mat-raised-button color="warn">Warn</button>
+            <button mat-raised-button disabled>Disabled</button>
+            <a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
+          </div>
+        </section>
+        <mat-divider></mat-divider>
+        <section>
+          <div class="example-label">Stroked</div>
+          <div class="example-button-row">
+            <button mat-stroked-button>Basic</button>
+            <button mat-stroked-button color="primary">Primary</button>
+            <button mat-stroked-button color="accent">Accent</button>
+            <button mat-stroked-button color="warn">Warn</button>
+            <button mat-stroked-button disabled>Disabled</button>
+            <a mat-stroked-button href="https://www.google.com/" target="_blank">Link</a>
+          </div>
+        </section>
+        <mat-divider></mat-divider>
+        <section>
+          <div class="example-label">Flat</div>
+          <div class="example-button-row">
+            <button mat-flat-button>Basic</button>
+            <button mat-flat-button color="primary">Primary</button>
+            <button mat-flat-button color="accent">Accent</button>
+            <button mat-flat-button color="warn">Warn</button>
+            <button mat-flat-button disabled>Disabled</button>
+            <a mat-flat-button href="https://www.google.com/" target="_blank">Link</a>
+          </div>
+        </section>
+        
+        Ao salvar o arquivo você notará vários erros de compilação. Inclusive, no próprio editor haverá diversos problemas que serão acusados.
+        Para resolver isso, abra o arquivo "./src/app/app.module.ts".
+            Adicione nas importações:
+                import { MatDividerModule } from "@angular/material/divider";
+                import { MatButtonModule } from "@angular/material/button";
+                
+            Altere
+                imports: [                   para    imports: [
+                  BrowserModule,                       BrowserModule,
+                  AppRoutingModule,                    AppRoutingModule,
+                  BrowserAnimationsModule              BrowserAnimationsModule
+                ],                                     MatDividerModule,
+                                                       MatButtonModule
+                                                     ],
+        
+        Salve o arquivo e veja que agora aparecem os botões na view. Falta-nos ajustar o CSS para podermos comparar com o exemplo
+        da documentação oficial.
+        Para isso, abra o arquivo "./src/app/app.component.css" e insira o seguinte conteúdo:
+        
+        section {
+          display: table;
+        }
+
+        .example-label {
+          display: table-cell;
+          font-size: 14px;
+          margin-left: 8px;
+          min-width: 120px;
+        }
+
+        .example-button-row {
+          display: table-cell;
+          max-width: 600px;
+        }
+
+        .example-button-row .mat-mdc-button-base {
+          margin: 8px 8px 8px 0;
+        }
+
+        .example-flex-container {
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+
+        .example-button-container {
+          display: flex;
+          justify-content: center;
+          width: 120px;
+        }
+
+        Salve e verifique novamente a view. Os botoões devem estar todos agora bem organizados. 
+        Como critério de comparação, visite https://material.angular.io/components/button/overview para ver o exemplo de onde foi tirado os códigos mostrados.
+
+019) Agora temos nosso projeto pronto para trabalhar.
