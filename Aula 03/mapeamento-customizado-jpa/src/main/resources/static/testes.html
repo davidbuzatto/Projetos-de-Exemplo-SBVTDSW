@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Back-End de Exemplo Usando Spring Boot</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/estilos.css" rel="stylesheet"/>
+  </head>
+  <body>
+
+    <h1>Back-End de Exemplo Usando Spring Boot</h1>
+
+    <div class="divContainerLinha">
+
+      <div class="divContainer divContainerColuna">
+        <h2>Cadastro de Estados</h2>
+        <div class="divContainer">
+          <h3>Estados Cadastrados</h3>
+          <div class="divTabelaDados">
+            <table class="tabelaDados">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nome</th>
+                  <th>Sigla</th>
+                  <th>Alterar</th>
+                  <th>Excluir</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyEstados">
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="divContainer">
+          <form id="formEstado" novalidate>
+            <table>
+              <tr>
+                <td>
+                  <label for="txtIdEstado">Id:</label>
+                </td>
+                <td>
+                  <input id="txtIdEstado" 
+                         type="text" 
+                         disabled/>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="txtNomeEstado">Nome:</label>
+                </td>
+                <td>
+                  <input id="txtNomeEstado" 
+                         type="text" 
+                         maxlength="50"
+                         required/>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <div id="divErroNomeEstado" class="divErro"></div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="txtSiglaEstado">Sigla:</label>
+                </td>
+                <td>
+                  <input id="txtSiglaEstado" 
+                         type="text"
+                         minlength="2"
+                         maxlength="2"
+                         required/>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <div id="divErroSiglaEstado" class="divErro"></div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div class="divBotoes">
+                    <button id="btnNovoEstado">Novo</button>
+                    <button id="btnSalvarEstado">Salvar</button>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+
+      <div class="divContainer divContainerColuna">
+        <h2>Cadastro de Cidades</h2>
+        <div class="divContainer">
+          <h3>Cidades Cadastradas</h3>
+          <div class="divTabelaDados">
+            <table class="tabelaDados">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Nome</th>
+                  <th>Estado</th>
+                  <th>Alterar</th>
+                  <th>Excluir</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyCidades">
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="divContainer">
+          <form id="formCidade" novalidate>
+            <table>
+              <tr>
+                <td>
+                  <label for="txtIdCidade">Id:</label>
+                </td>
+                <td>
+                  <input id="txtIdCidade"
+                         type="text"
+                         disabled/>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="txtNomeCidade">Nome:</label>
+                </td>
+                <td>
+                  <input id="txtNomeCidade"
+                         type="text"
+                         maxlength="50"
+                         required/>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <div id="divErroNomeCidade" class="divErro"></div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label for="selEstadoCidade">Estado:</label>
+                </td>
+                <td>
+                  <select id="selEstadoCidade">
+                  </select>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <div id="divErroEstadoCidade" class="divErro"></div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <div class="divBotoes">
+                    <button id="btnNovaCidade">Nova</button>
+                    <button id="btnSalvarCidade">Salvar</button>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <script src="js/App.js" type="module"></script>
+
+  </body>
+</html>

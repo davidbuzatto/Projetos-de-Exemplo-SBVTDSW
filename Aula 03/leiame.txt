@@ -1,0 +1,2 @@
+primeiro momento: usar o projeto do backend da aula 2
+segundo momento: usar o projeto do backend com mapeamento customizado de modelo físico já implementado

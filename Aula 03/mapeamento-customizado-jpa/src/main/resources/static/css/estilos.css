@@ -1,0 +1,80 @@
+body {
+    font-family: sans-serif;
+}
+
+.divContainer {
+    border: solid thin #000000;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    background-color: #ffffff;
+}
+
+.divContainerLinha {
+    display: flex;
+}
+
+.divContainerColuna {
+    background-color: #eeeeee;
+    flex: 33%;
+}
+
+.divBotoes {
+    text-align: right;
+}
+
+.divErro {
+    color: #cc0000;
+    font-size: small;
+    word-wrap: break-word;
+}
+
+.inputInvalido {
+    border: 1px solid #cc0000;
+    background-color: #ffeeee;
+}
+
+.divTabelaDados {
+    overflow: scroll;
+    height: 200px;
+}
+
+.tabelaDados {
+    background-color: #eeeeee;
+    border: solid thin #000000;
+    border-radius: 5px;
+    border-spacing: 0px;
+    padding: 5px;
+}
+
+.tabelaDados th {
+    background: #CCCCCC;
+    padding: 5px;
+}
+
+.tabelaDados td {
+    padding: 5px;
+}
+
+.tabelaDados tr:nth-child(even) {
+    background: #EEEEEE;
+}
+
+.tabelaDados tr:nth-child(odd) {
+    background: #DDDDDD;
+}
+
+.tabelaDados tr:hover {
+    background: #99ccff;
+}
+
+.spanTotalVenda {
+    font-weight: bold;
+    font-size: larger;
+}
+
+#btnAdicionarItemVenda {
+    width: 50px;
+    height: 50px;
+}
+
