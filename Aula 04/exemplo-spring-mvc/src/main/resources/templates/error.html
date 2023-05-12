@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>Exemplo Spring MVC com Thymeleaf</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+        <link href="" rel="" th:replace="~{fragmentos/cssJs :: css}"/>
+        <script th:replace="~{fragmentos/cssJs :: js}"></script>  
+    </head>
+
+    <body class="bg-light">
+
+        <div th:replace="~{fragmentos/cabecalho}"></div>
+
+        <h4 class="text-danger">Ops... algo de errado aconteceu...</h4>
+
+        <div class="text-wrap text-justify" style="width: 40rem;">
+            Durante a execução de alguma operação, o sistema gerou algum erro
+            interno. As causas mais comuns envolvem a tentativa de remoção/exclusão
+            de dados que estão associados a outros dados, por exemplo, remover um
+            piloto que já foi associado à algum caminhão. O detalhamento do que
+            aconteceu pode ser visto abaixo. Para mais detalhes, consulte um admistrador.
+            <a th:href="@{/index}" class="btn btn-primary btn-pill btn-sm">Voltar à Página Inicial</a>
+
+            <div class="card">
+                <div class="card-body">
+                    <div th:if="${path != null}">
+                        <span class="font-weight-bold">Caminho: </span><span th:text="${path}"></span>
+                    </div> 
+                    <div th:if="${error != null}">
+                        <span class="font-weight-bold">Erro: </span><span th:text="${error}"></span>
+                    </div> 
+                    <div th:if="${status != null}">
+                        <span class="font-weight-bold">Status: </span><span th:text="${status}"></span>
+                    </div> 
+                    <div th:if="${message != null}">
+                        <span class="font-weight-bold">Mensagem: </span><span th:text="${message}"></span>
+                    </div> 
+                    <div th:if="${exception != null}">
+                        <span class="font-weight-bold">Exceção: </span><span th:text="${exception}"></span>
+                    </div> 
+                    <div th:if="${trace != null}">
+                        <span class="font-weight-bold">Traçagem: </span><span th:text="${trace}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:replace="~{fragmentos/rodape}"></div>
+
+    </body>
+
+</html>

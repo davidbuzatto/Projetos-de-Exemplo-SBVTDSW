@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8"/>
+</head>
+
+<body>
+    
+    <div th:fragment="css" th:remove="tag">
+        <link rel="stylesheet" 
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+              integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+              crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/shards-ui/3.0.0/css/shards.min.css"
+              integrity="sha512-ATPNLwY6zsriAW9aWaVyzCz5bRunkyNF3m7Es87HrwwhcJ2LwGDHnkPJzNRUOZI4fUcg6kEoNqC/rAUfvRizRw=="
+              crossorigin="anonymous"/>
+        <link rel="stylesheet" th:href="@{/css/estilos.css}"/>
+    </div>
+    
+    <div th:fragment="js" th:remove="tag">
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" 
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" 
+                crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" 
+                integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" 
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/shards-ui/3.0.0/js/shards.min.js"
+                integrity="sha512-pY3v/NW9hYmsCbTOeU6NHkNbaTAAGXLTZ27i1MIqHVLwniv/0xt26F5vSKI3jr2bZBJP3k2jRvlilMCp3E1bKg=="
+                crossorigin="anonymous"></script>
+    </div>
+    
+</body>
+
+</html>

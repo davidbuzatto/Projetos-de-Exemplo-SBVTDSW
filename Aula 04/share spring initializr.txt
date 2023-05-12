@@ -1,0 +1,1 @@
+https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.0.6&packaging=jar&jvmVersion=17&groupId=exemplospringmvc&artifactId=exemplo-spring-mvc&name=Exemplo%20Spring%20MVC&description=Exemplo%20usando%20Spring%20MVC%20e%20Thymeleaf&packageName=exemplospringmvc&dependencies=devtools,lombok,web,thymeleaf,data-jpa,mariadb,validation

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title></title>
+        <meta charset="UTF-8"/>
+    </head>
+
+    <body>
+
+        <div th:fragment="insercaoAlteracao" th:remove="tag">
+
+            <div class="form-group text-left">
+                <label for="nome">Nome</label>
+                <input type="text" th:field="*{nome}" id="nome" placeholder="Nome" class="form-control"/>
+                <small th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}" class="badge badge-pill badge-danger"></small>
+            </div>
+
+            <div class="form-group text-left">
+                <label for="sigla">Sigla</label>
+                <input type="text" th:field="*{sigla}" id="sigla" placeholder="Sigla" class="form-control"/>
+                <small th:if="${#fields.hasErrors('sigla')}" th:errors="*{sigla}" class="badge badge-pill badge-danger"></small>
+                <small th:if="${erroSiglaDuplicada != null}" th:text="${erroSiglaDuplicada}" class="badge badge-pill badge-danger"></small>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary btn-pill"/>
+                <a th:href="@{/estados/listar}" class="btn btn-secondary btn-pill">Voltar</a>
+            </div>
+
+        </div>
+
+        <div th:fragment="exclusao" th:remove="tag">
+
+            <div class="form-group text-left">
+                <label for="nome">Nome</label>
+                <input type="text" th:value="*{nome}" id="nome" class="form-control" readonly="readonly"/>
+            </div>
+
+            <div class="form-group text-left">
+                <label for="sigla">Sigla</label>
+                <input type="text" th:value="*{sigla}" id="sigla" class="form-control" readonly="readonly"/>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Excluir" class="btn btn-primary btn-pill"/>
+                <a th:href="@{/estados/listar}" class="btn btn-secondary btn-pill">Voltar</a>
+            </div>
+
+        </div>
+
+    </body>
+
+</html>

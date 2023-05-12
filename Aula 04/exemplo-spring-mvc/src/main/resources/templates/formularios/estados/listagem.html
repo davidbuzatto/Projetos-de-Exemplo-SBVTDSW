@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Estados Cadastrados</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
+    <link href="" rel="" th:replace="~{fragmentos/cssJs :: css}"/>
+    <script th:replace="~{fragmentos/cssJs :: js}"></script>  
+</head>
+
+<body class="bg-light">
+    
+    <div th:replace="~{fragmentos/cabecalho}"></div>
+        
+        <div th:if="${estados.empty}">
+            <h4>Não há estados cadastrados</h4>
+            <a th:href="@{/estados/prepararInsercao}" class="btn btn-primary btn-pill">Novo Estado</a>
+        </div>
+        
+        <div th:if="${!estados.empty}">
+            <h4>Estados Cadastrados</h4>
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped table-bordered table-hover table-responsive">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Nome</th>
+                                <th>Sigla</th>
+                                <th>Alterar</th>
+                                <th>Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="estado : ${estados}">
+                                <td th:text="${estado.nome}"></td>
+                                <td th:text="${estado.sigla}"></td>
+                                <td><a th:href="@{/estados/prepararAlteracao/{id}(id=${estado.id})}" class="btn btn-info btn-pill btn-sm">Alterar</a></td>
+                                <td><a th:href="@{/estados/prepararExclusao/{id}(id=${estado.id})}" class="btn btn-danger btn-pill btn-sm">Excluir</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a th:href="@{/estados/prepararInsercao}" class="btn btn-primary btn-pill">Novo Estado</a>
+                    <a th:href="@{/index}" class="btn btn-secondary btn-pill">Tela Principal</a>
+                </div>
+            </div>
+                     
+        </div>
+            
+    <div th:replace="~{fragmentos/rodape}"></div>
+    
+</body>
+
+</html>
