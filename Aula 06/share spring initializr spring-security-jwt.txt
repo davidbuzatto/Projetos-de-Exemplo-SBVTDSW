@@ -1,0 +1,1 @@
+https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.1.0&packaging=jar&jvmVersion=17&groupId=exemplo&artifactId=exemplo-spring-security-jwt&name=Exemplo%20usando%20Spring%20Secutiry%20e%20JWT&description=Exemplo%20usando%20Spring%20Secutiry%20e%20JWT&packageName=exemplo.springsecurityjwt&dependencies=devtools,lombok,web,security,data-jpa,mariadb,validation
