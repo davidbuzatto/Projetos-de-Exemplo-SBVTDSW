@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Teste de Serviços Autenticados</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script defer src="js/script.js"></script>
+  </head>
+  <body>
+    
+    <h1>Teste de Serviços Autenticados</h1>
+    <hr/>
+    
+    <div>
+      <h2>Signup</h2>
+      <table>
+        <tr>
+          <td class="alinharDireita"><label for="txtUsuarioSignup">Usuário: </label></td>
+          <td><input id="txtUsuarioSignup"/></td>
+        </tr>
+        <tr>
+          <td class="alinharDireita"><label for="txtEmailSignup">E-mail: </label></td>
+          <td><input id="txtEmailSignup"/></td>
+        </tr>
+        <tr>
+          <td class="alinharDireita"><label for="txtSenhaSignup">Senha: </label></td>
+          <td><input id="txtSenhaSignup" type="password"/></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <fieldset>
+              <legend>Função: </legend>
+              <table>
+                <tr>
+                  <td><input id="chkFuncaoUsuarioSignup" type="checkbox"/></td>
+                  <td><label for="chkFuncaoUsuarioSignup">Usuário</label></td>
+                </tr>
+                <tr>
+                  <td><input id="chkFuncaoModeradorSignup" type="checkbox"/></td>
+                  <td><label for="chkFuncaoModeradorSignup">Moderador</label></td>
+                </tr>
+                <tr>
+                  <td><input id="chkFuncaoAdministradorSignup" type="checkbox"/></td>
+                  <td><label for="chkFuncaoAdministradoroSignup">Administrador</label></td>
+                </tr>
+              </table>
+            </fieldset>
+          </td>
+        </tr>
+        <tr class="alinharDireita">
+          <td colspan="2"><button id="btnCadastrarSignup">Cadastrar</button></td>
+        </tr>
+      </table>
+    </div>
+    <hr/>
+    
+    <div>
+      <h2>Signin</h2>
+      <table>
+        <tr>
+          <td class="alinharDireita"><label for="txtUsuarioSigninp">Usuário: </label></td>
+          <td><input id="txtUsuarioSignin"/></td>
+        </tr>
+        <tr>
+          <td class="alinharDireita"><label for="txtSenhaSignin">Senha: </label></td>
+          <td><input id="txtSenhaSignin" type="password"/></td>
+        </tr>
+        <tr>
+          <td colspan="2" class="alinharDireita"><button id="btnEntrarSignup">Entrar</button></td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td class="alinharDireita"><label>Access Token: </label></td>
+          <td><span id="spanAccessToken" class="textoAccessToken">não há</span></td>
+        </tr>
+      </table>
+    </div>
+    <hr/>
+    
+    <div>
+      <h2>Testar Serviços</h2>
+      <button id="btnTestarTudo">Testar Tudo</button>
+      <button id="btnTestarUsuario">Testar Serviço Usuário</button>
+      <button id="btnTestarModerador">Testar Serviço Moderador</button>
+      <button id="btnTestarAdministrador">Testar Serviço Administrador</button>
+    </div>
+    <hr/>
+    
+    <div>
+      <h2>Saída</h2>
+      <div id="divSaida">não há</div>
+    </div>
+    
+  </body>
+</html>

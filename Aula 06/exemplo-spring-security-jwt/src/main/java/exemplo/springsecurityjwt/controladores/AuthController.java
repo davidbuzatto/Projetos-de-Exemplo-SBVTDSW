@@ -101,7 +101,7 @@ public class AuthController {
         Set<Role> roles = new HashSet<>();
 
         if ( roleStr == null ) {
-            Role funcaoUsuario = funcaoRepo.findByName(ERole.USUARIO )
+            Role funcaoUsuario = funcaoRepo.findByName( ERole.ROLE_USUARIO )
                     .orElseThrow( () -> new RuntimeException( "Erro: Função não encontrada." ) );
             roles.add( funcaoUsuario );
         } else {
@@ -110,19 +110,19 @@ public class AuthController {
                 
                 switch ( funcao ) {
                     case "admin":
-                        Role funcaoAdministrador = funcaoRepo.findByName(ERole.ADMINISTRADOR )
+                        Role funcaoAdministrador = funcaoRepo.findByName( ERole.ROLE_ADMINISTRADOR )
                                 .orElseThrow( () -> new RuntimeException( "Erro: Função não encontrada." ) );
                         roles.add( funcaoAdministrador );
 
                         break;
                     case "mod":
-                        Role funcaoModerador = funcaoRepo.findByName(ERole.MODERADOR )
+                        Role funcaoModerador = funcaoRepo.findByName( ERole.ROLE_MODERADOR )
                                 .orElseThrow( () -> new RuntimeException( "Erro: Função não encontrada." ) );
                         roles.add( funcaoModerador );
 
                         break;
                     default:
-                        Role funcaoUsuario = funcaoRepo.findByName(ERole.USUARIO )
+                        Role funcaoUsuario = funcaoRepo.findByName( ERole.ROLE_USUARIO )
                                 .orElseThrow( () -> new RuntimeException( "Erro: Função não encontrada." ) );
                         roles.add( funcaoUsuario );
                 }

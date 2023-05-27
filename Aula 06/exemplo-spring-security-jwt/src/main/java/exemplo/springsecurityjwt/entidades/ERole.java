@@ -6,7 +6,7 @@ package exemplo.springsecurityjwt.entidades;
  * @author Prof. Dr. David Buzatto
  */
 public enum ERole {
-    USUARIO,
-    MODERADOR,
-    ADMINISTRADOR
+    ROLE_USUARIO,
+    ROLE_MODERADOR,
+    ROLE_ADMINISTRADOR
 }

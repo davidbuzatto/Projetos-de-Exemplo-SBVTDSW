@@ -1,11 +1,34 @@
 http://localhost:8080/api/auth/signup
 
 {
+    "username": "admin",
+    "email": "admin@ifsp.edu.br",
+    "password": "12345678",
+    "role": [ "admin" ]
+}
+
+{
+    "username": "moderador",
+    "email": "moderador@ifsp.edu.br",
+    "password": "12345678",
+    "role": [ "mod" ]
+}
+
+{
+    "username": "usuario",
+    "email": "usuario@ifsp.edu.br",
+    "password": "12345678",
+    "role": [ "usr" ]
+}
+
+
+{
     "username": "david",
     "email": "davidbuzatto@ifsp.edu.br",
     "password": "12345678",
     "role": [ "mod", "user" ]
 }
+
 
 http://localhost:8080/api/auth/signin
 

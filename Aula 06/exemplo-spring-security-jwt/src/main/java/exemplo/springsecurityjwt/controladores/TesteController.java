@@ -18,7 +18,7 @@ public class TesteController {
 
     @GetMapping( "/tudo" )
     public String allAccess() {
-        return "Conteúdo público.";
+        return "Conteúdo Público.";
     }
 
     @GetMapping( "/usuario" )
