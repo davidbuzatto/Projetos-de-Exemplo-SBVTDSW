@@ -7,35 +7,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
+ * Realiza os testes de acesso a recursos baseados na função do usuário.
+ * 
  * @author Prof. Dr. David Buzatto
  */
 @CrossOrigin( origins = "*", maxAge = 3600 )
 @RestController
-@RequestMapping( "/teste" )
+@RequestMapping( "/api/teste" )
 public class TesteController {
 
-    @GetMapping( "/all" )
+    @GetMapping( "/tudo" )
     public String allAccess() {
         return "Conteúdo público.";
     }
 
     @GetMapping( "/usuario" )
-    @PreAuthorize( "temFuncao('USUARIO') or temFuncao('MODERADOR') or temFuncao('ADMINISTRADOR')" )
+    @PreAuthorize( "hasRole('USUARIO') or hasRole('MODERADOR') or hasRole('ADMINISTRADOR')" )
     public String userAccess() {
         return "Conteúdo do Usuário.";
     }
 
     @GetMapping( "/moderador" )
-    @PreAuthorize( "temFuncao('MODERADOR')" )
+    @PreAuthorize( "hasRole('MODERADOR')" )
     public String moderatorAccess() {
         return "Tela de Moderação.";
     }
 
     @GetMapping( "/administrador" )
-    @PreAuthorize( "temFuncao('ADMINISTRADOR')" )
+    @PreAuthorize( "hasRole('ADMINISTRADOR')" )
     public String adminAccess() {
-        return "Tela de Adminsitração.";
+        return "Tela de Administração.";
     }
     
 }

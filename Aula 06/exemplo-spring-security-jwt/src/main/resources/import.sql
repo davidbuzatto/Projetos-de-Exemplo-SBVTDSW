@@ -1,5 +1,5 @@
-delete from funcao;
+delete from role;
 
-INSERT INTO funcao(tipo) VALUES('USUARIO');
-INSERT INTO funcao(tipo) VALUES('MODERADOR');
-INSERT INTO funcao(tipo) VALUES('ADMINISTRADOR');
+INSERT INTO role(name) VALUES('USUARIO');
+INSERT INTO role(name) VALUES('MODERADOR');
+INSERT INTO role(name) VALUES('ADMINISTRADOR');

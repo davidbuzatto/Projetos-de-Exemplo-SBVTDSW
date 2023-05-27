@@ -26,6 +26,6 @@ public class SignupRequest {
     @Size( min = 6, max = 40 )
     private String password;
 
-    private Set<String> funcao;
+    private Set<String> role;
     
 }

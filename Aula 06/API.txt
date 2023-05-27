@@ -1,0 +1,6 @@
+POST    /api/auth/signup            criar uma nova conta
+POST    /api/auth/signin            fazer login numa conta
+GET     /api/teste/tudo             obter conteúdo público
+GET     /api/teste/usuario          acessar conteúdo do Usuário
+GET     /api/teste/moderador        acessar conteúdo do Moderador
+GET     /api/teste/administrador    acessar conteúdo do Administrador

@@ -20,9 +20,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-
 /**
- *
+ * Usuário.
+ * 
  * @author Prof. Dr. David Buzatto
  */
 @Entity
@@ -34,7 +34,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode( onlyExplicitlyIncluded = true )
-public class Usuario {
+public class User {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -55,9 +55,9 @@ public class Usuario {
     private String password;
 
     @ManyToMany( fetch = FetchType.LAZY )
-    @JoinTable( name = "funcoes_usuario",
-            joinColumns = @JoinColumn( name = "usuario_id" ),
-            inverseJoinColumns = @JoinColumn( name = "funcao_id" ) )
-    private Set<Funcao> funcoes = new HashSet<>();
+    @JoinTable( name = "user_roles",
+            joinColumns = @JoinColumn( name = "user_id" ),
+            inverseJoinColumns = @JoinColumn( name = "role_id" ) )
+    private Set<Role> roles = new HashSet<>();
 
 }

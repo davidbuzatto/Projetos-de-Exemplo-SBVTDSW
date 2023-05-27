@@ -7,26 +7,31 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import exemplo.springsecurityjwt.entidades.Usuario;
-import exemplo.springsecurityjwt.repositorios.UsuarioRepository;
+import exemplo.springsecurityjwt.entidades.User;
+import exemplo.springsecurityjwt.repositorios.UserRepository;
 
 /**
- *
+ * Implementação da interface UserDetailsService responsável em retornar um
+ * usuário autenticado.
+ * 
  * @author Prof. Dr. David Buzatto
  */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    UsuarioRepository usuarioRepo;
+    UserRepository usuarioRepo;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername( String username ) throws UsernameNotFoundException {
         
-        Usuario usuario = usuarioRepo.findByUsername( username )
+        // carrega o usuário
+        User usuario = usuarioRepo.findByUsername( username )
                 .orElseThrow( () -> new UsernameNotFoundException( "Usuário não encontrado com o nome de: " + username ) );
 
+        // constrói um UserDetails, que contém os dados do usuário e os dados
+        // de autorização
         return UserDetailsImpl.build( usuario );
         
     }

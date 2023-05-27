@@ -13,7 +13,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- *
+ * A função de um usuário.
+ * 
  * @author Prof. Dr. David Buzatto
  */
 @Entity
@@ -21,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode( onlyExplicitlyIncluded = true )
-public class Funcao {
+public class Role {
 
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY )
@@ -30,6 +31,6 @@ public class Funcao {
 
     @Enumerated( EnumType.STRING )
     @Column( length = 20 )
-    private TipoFuncao tipo;
+    private ERole name;
 
 }

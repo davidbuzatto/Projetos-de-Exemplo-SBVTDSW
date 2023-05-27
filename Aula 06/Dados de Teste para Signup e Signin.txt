@@ -1,0 +1,15 @@
+http://localhost:8080/api/auth/signup
+
+{
+    "username": "david",
+    "email": "davidbuzatto@ifsp.edu.br",
+    "password": "12345678",
+    "role": [ "mod", "user" ]
+}
+
+http://localhost:8080/api/auth/signin
+
+{
+    "username": "david",
+    "password": "12345678"
+}

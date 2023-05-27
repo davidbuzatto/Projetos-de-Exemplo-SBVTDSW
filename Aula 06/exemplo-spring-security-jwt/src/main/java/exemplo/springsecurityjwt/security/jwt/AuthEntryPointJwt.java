@@ -15,7 +15,8 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
 
 /**
- *
+ * Trata os erros de autenticação.
+ * 
  * @author Prof. Dr. David Buzatto
  */
 @Component
@@ -29,6 +30,10 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
         
         logger.error( "Erro - não autorizado: {}", authException.getMessage() );
 
+        // mais simples
+        //response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
+        
+        // ou caso queira custmizar os dados do retorno (response)
         response.setContentType( MediaType.APPLICATION_JSON_VALUE );
         response.setStatus( HttpServletResponse.SC_UNAUTHORIZED );
 

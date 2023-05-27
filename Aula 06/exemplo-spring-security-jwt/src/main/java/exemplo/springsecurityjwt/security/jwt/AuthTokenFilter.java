@@ -17,7 +17,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
- *
+ * Extende a classe OncePerRequestFilter para realizar apenas uma execução
+ * para cada requisição da API.
+ * 
  * @author Prof. Dr. David Buzatto
  */
 public class AuthTokenFilter extends OncePerRequestFilter {
@@ -30,6 +32,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     private static final Logger logger = LoggerFactory.getLogger( AuthTokenFilter.class );
 
+    // realiza a autenticação
     @Override
     protected void doFilterInternal( HttpServletRequest request, HttpServletResponse response, FilterChain filterChain )
             throws ServletException, IOException {

@@ -11,6 +11,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,10 +19,16 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
+ * WebSecurityConfig é a classe responsável pela a implementação da segurança na
+ * aplicação. Ela configura CORS (Cross-origin Resource Sharing - permissão para
+ * execução em uma origem e acesso à recursos de outra origem), CSRF (Cross-site
+ * Request Forgery - requisições não autorizadas de um usuário confiável),
+ * gerenciamento de sessões e regras para proteger recursos.
  *
  * @author Prof. Dr. David Buzatto
  */
 @Configuration
+//@EnableWebSecurity
 @EnableMethodSecurity
 public class WebSecurityConfig {
 
@@ -38,14 +45,14 @@ public class WebSecurityConfig {
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-        
+
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
 
         authProvider.setUserDetailsService( userDetailsService );
         authProvider.setPasswordEncoder( passwordEncoder() );
 
         return authProvider;
-        
+
     }
 
     @Bean
@@ -60,20 +67,20 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain( HttpSecurity http ) throws Exception {
-        
-        http.cors().and().csrf().disable()
-                .exceptionHandling().authenticationEntryPoint( unauthorizedHandler ).and()
-                .sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS ).and()
-                .authorizeRequests().requestMatchers( "/api/auth/**" ).permitAll()
-                .requestMatchers( "/api/test/**" ).permitAll()
-                .anyRequest().authenticated();
+
+        http.csrf( csrf -> csrf.disable() )
+                .exceptionHandling( exception -> exception.authenticationEntryPoint( unauthorizedHandler ) )
+                .sessionManagement( session -> session.sessionCreationPolicy( SessionCreationPolicy.STATELESS ) )
+                .authorizeHttpRequests( auth -> auth.requestMatchers( "/api/auth/**" ).permitAll()
+                .requestMatchers( "/api/teste/**" ).permitAll()
+                .anyRequest().authenticated() );
 
         http.authenticationProvider( authenticationProvider() );
 
         http.addFilterBefore( authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class );
 
         return http.build();
-        
+
     }
-    
+
 }
