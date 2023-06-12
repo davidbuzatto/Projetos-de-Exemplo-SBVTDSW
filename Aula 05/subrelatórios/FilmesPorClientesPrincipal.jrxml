@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.3.final using JasperReports Library version 6.20.3-415f9428cffdb6805c6f85bbb29ebaf18813a2ab  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FilmesPorClientesPrincipal" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a7825b6d-c3f4-4376-a272-d2a284012d0c">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Sakila"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString>
+		<![CDATA[SELECT
+    c.customer_id,
+    c.first_name,
+    c.last_name
+FROM 
+    customer c
+ORDER BY
+    c.first_name,
+    c.last_name
+LIMIT 5]]>
+	</queryString>
+	<field name="customer_id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="customer_id"/>
+		<property name="com.jaspersoft.studio.field.label" value="customer_id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="first_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="first_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="first_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<field name="last_name" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="last_name"/>
+		<property name="com.jaspersoft.studio.field.label" value="last_name"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="customer"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="554" height="30" uuid="137cc8c4-506b-4752-a6de-ba70a3247907"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Filmes Locados por Clientes]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="40" y="0" width="110" height="20" uuid="d8614ef1-98fa-43e4-962a-669615b66597">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f8eb00c7-d951-49da-bd25-957d8ac6a16c"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="0" width="110" height="20" uuid="1b388476-a5be-4481-888c-5faddeb80c3a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1fd8bcc4-73b5-4098-b0b3-9cb6b3a81769"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{last_name}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="0" y="20" width="554" height="20" uuid="8c15f520-3be1-4c4c-8aba-36b1256a9f56"/>
+				<subreportParameter name="id_cliente">
+					<subreportParameterExpression><![CDATA[$F{customer_id}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["FilmesPorClientesSub.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement x="150" y="0" width="72" height="20" uuid="fc7ca016-138a-4523-9f2d-5c94451de6c1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1fd8bcc4-73b5-4098-b0b3-9cb6b3a81769"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sobrenome:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="40" height="20" uuid="3b7bc9dc-e567-45bf-97b6-a8dd3a7b4228">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="f8eb00c7-d951-49da-bd25-957d8ac6a16c"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome:]]></text>
+			</staticText>
+			<line direction="BottomUp">
+				<reportElement positionType="FixRelativeToBottom" x="0" y="42" width="554" height="1" uuid="ac58537f-d8cf-415d-82e8-dff058a0dc10"/>
+			</line>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="290" y="0" width="160" height="20" uuid="388d97ea-fa82-4111-9adc-132a913eb86e"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="450" y="0" width="104" height="20" uuid="bc9cd0df-3c75-4792-8cd1-3305b24698d1"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
